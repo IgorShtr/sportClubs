@@ -20,10 +20,25 @@ export const activeCity = (payload) => ({
 
 });
 
+export const ACTIVE_ACTIVITY = "ACTIVE_ACTIVITY"
+
+export const activeActivity = (payload) => ({
+  type: ACTIVE_ACTIVITY,
+  payload
+
+});
+
 
 export const AVAILABLE_SPORTS = "AVAILABLE_SPORTS"
 
 export const availableSports = () => ({
   type: AVAILABLE_SPORTS,
+
+});
+
+export const AVAILABLE_SPORTS_EXACTCITY = "AVAILABLE_SPORTS_EXACTCITY"
+
+export const availableSportsExactcity = () => ({
+  type: AVAILABLE_SPORTS_EXACTCITY,
 
 });

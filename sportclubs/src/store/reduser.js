@@ -4,10 +4,14 @@ import {
   availableCities,
   availableSports,
   activeCity,
+  availableSportsExactcity,
+  activeActivity,
   AVAILABLE_CLUBS,
   AVAILABLE_CITIES,
   ACTIVE_CITY,
-  AVAILABLE_SPORTS
+  ACTIVE_ACTIVITY,
+  AVAILABLE_SPORTS,
+  AVAILABLE_SPORTS_EXACTCITY,
 } from './actions';
 
 
@@ -16,6 +20,8 @@ const initialState = {
   availableCities: [],
   activeCity: [],
   availableSports: [],
+  availableSportsExactcity:[], 
+  activeActivity: "",
   paginationPage: 1,
   
 
@@ -52,6 +58,12 @@ export function sportClubsReduser(store = initialState, { type, payload }) {
         )
       }
     }
+    case ACTIVE_ACTIVITY: {       
+      return {
+        ...store,
+        activeActivity:  payload
+      }
+    }
     case AVAILABLE_SPORTS: {
       const activitiesArrey =store.availableClubs.map(({activity})=>{
         const slugs = activity.map(({slug})=> {return slug})
@@ -61,6 +73,18 @@ export function sportClubsReduser(store = initialState, { type, payload }) {
       return {
         ...store,
         availableSports: activities
+    
+      }
+    }
+    case AVAILABLE_SPORTS_EXACTCITY: {
+      const activitiesArrey =store.activeCity.map(({activity})=>{
+        const slugs = activity.map(({slug})=> {return slug})
+       return slugs
+       });
+       const activities = Array.from(new Set (activitiesArrey.reduce((a,b)=>a.concat(b), [])))
+      return {
+        ...store,
+        availableSportsExactcity: activities
     
       }
     }
@@ -89,6 +113,10 @@ export const setAvailableClubs = () => dispatch => {
 export const setActiveCity = city => dispatch => {
   dispatch(activeCity(city));
 }
-export const setAvailableSports = () => dispatch => {
-  dispatch(availableSports());
+export const setActiveActivity = (activity) => dispatch => {
+  dispatch(activeActivity(activity));
+}
+
+export const setAvailableSportsExactcity  = () => dispatch => {
+  dispatch(availableSportsExactcity());
 }

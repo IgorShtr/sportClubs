@@ -2,13 +2,15 @@ import React, { useState, useEffect, useLayoutEffect} from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
-import {setActiveCity} from '../store/reduser';
+import {setActiveActivity} from '../store/reduser';
 
 export const ActivitiesSection = props =>{
     
   const [activeState, setActiveState] = useState([])
   const dispatch = useDispatch();
   const activitiesFromStor = useSelector(state =>state.sportClubs.availableSports);
+  const activitiesExactcityFromStor = useSelector(state =>state.sportClubs.availableSportsExactcity);
+
  
 
  
@@ -23,9 +25,9 @@ export const ActivitiesSection = props =>{
     },[activitiesFromStor])
  
 const setActive = (e) =>{
-  const chosenCity =e.target.getAttribute('data-name');
+  const chosenActivity =e.target.getAttribute('data-name');
   const newState = activeState.map(({city})=>{
-    if (city===chosenCity){
+    if (city===chosenActivity){
       return { city,
       isActive: true}
     }
@@ -37,7 +39,7 @@ const setActive = (e) =>{
     }
   })
   setActiveState(newState);
-  // dispatch(setActiveCity(chosenCity))
+  dispatch(setActiveActivity(chosenActivity))
 }
 
 
@@ -59,20 +61,22 @@ const setActive = (e) =>{
 }
 
 const ActivityItem = styled.div`
-font-size: 16px;
+font-size: 14px;
 font-family: 'Source Sans Pro', sans-serif;
 padding: 7px;
 margin: 3px;
 cursor: pointer;
 box-sizing: border-box;
-border-radius: 0.5px;
-border: ${props => props.isActive ? "solid 0.3px grey" : "solid 0.5px white"};
-border-bottom: none;
+border-radius: 5px;
+border: solid 0.3px grey;
+background-color:${props=>props.isActive ? "lightgrey" : "none"};
 :hover{
   background-color: lightgrey;
 }
 `
 const ActivityList = styled.div`
+border-top: 1px solid grey;
+padding-top: 15px;
 display: flex;
 flex-wrap: wrap;
 `

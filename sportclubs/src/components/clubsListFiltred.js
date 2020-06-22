@@ -10,10 +10,15 @@ export const ClubsListFiltered = props =>{
 
 const clubs = useSelector(state =>state.sportClubs.availableClubs);
 const activeCity = useSelector(state =>state.sportClubs.activeCity);
+const activeActivity = useSelector(state =>state.sportClubs.activeActivity);
 
-
-
-const clubDitails =(activeCity.length ? activeCity : clubs).map(({link, logo, title_short})=>{
+const filtered =(activeCity.length ? activeCity : clubs).filter((club)=>{  
+  const availableItemActivity = club.activity.map(({slug})=>{return slug});
+  const includingCheck = availableItemActivity.filter((activity)=>{return (activity===activeActivity)}); 
+  return includingCheck.length
+}) 
+console.log(filtered) 
+const clubDitails =(filtered.length ? filtered : clubs).map(({link, logo, title_short})=>{
   
 return (
   <ClubItemData>
