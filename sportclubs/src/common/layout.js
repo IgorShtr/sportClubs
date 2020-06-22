@@ -22,5 +22,6 @@ width: 100vw;
 height: 100%;
 & .content {
   flex-grow:1;
+  margin-top: 50px;
 }
 `;

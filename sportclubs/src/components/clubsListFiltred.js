@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,18 +7,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ClubsListFiltered = props =>{
-
+const [clubsList, setClubsList] = useState([]);
 const clubs = useSelector(state =>state.sportClubs.availableClubs);
 const activeCity = useSelector(state =>state.sportClubs.activeCity);
 const activeActivity = useSelector(state =>state.sportClubs.activeActivity);
 
-const filtered =(activeCity.length ? activeCity : clubs).filter((club)=>{  
+// useLayoutEffect(()=>{
+//   setClubsList(clubs)
+// },[])
+
+console.log(activeCity, activeActivity , clubsList) 
+
+useEffect(()=>{
+  const filteredBySity =       clubs.filter(it=>{
+     const {title} =  it.city;   
+   if (title === activeCity){
+     return it
+   }
+  }
+  )
+
+const filtered = activeActivity ?  (filteredBySity.length ? filteredBySity : clubs).filter((club)=>{  
   const availableItemActivity = club.activity.map(({slug})=>{return slug});
   const includingCheck = availableItemActivity.filter((activity)=>{return (activity===activeActivity)}); 
   return includingCheck.length
-}) 
-console.log(filtered) 
-const clubDitails =(filtered.length ? filtered : clubs).map(({link, logo, title_short})=>{
+}) : filteredBySity;
+
+(filtered.length || filteredBySity.length) ? setClubsList(filtered) : setClubsList(clubs)
+
+}, [activeCity, activeActivity, clubs])
+
+
+const clubDitails =clubsList.map(({link, logo, title_short})=>{
   
 return (
   <ClubItemData>
@@ -33,7 +53,7 @@ return (
 })
 return (
   <ClubListStyles>
-  {clubDitails}
+  {clubDitails.length ? clubDitails : (<NoClubMessge>Нет такого вида спорта в Вашем городе</NoClubMessge>)}
   </ClubListStyles>
 )
 }
@@ -64,4 +84,10 @@ img{
   width: 205px;
   height: 205px;
 }
+`
+const NoClubMessge = styled.div`
+margin: 20px auto;
+font-weight: bold;
+
+
 `

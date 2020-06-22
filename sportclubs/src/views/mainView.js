@@ -2,6 +2,8 @@ import React, { useState, useLayoutEffect, useEffect} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import {  useDispatch, useSelector } from 'react-redux';
+
+
 import {setAvailableClubs} from '../store/reduser'
 import {Layout} from '../common/layout';
 import {ClubsListFiltered} from '../components/clubsListFiltred';
@@ -32,11 +34,12 @@ const loadMore =()=>{
 
   return (
     <Layout>
-      <Container>
-        <CitiesSection setActiveCity={setActiveCity}/>
+      <Container>      
+          <CitiesSection setActiveCity={setActiveCity}/>
         <ActivitiesSection/>
         <ClubsListFiltered clubsList={[]}/>
        { (shownItems !== filtredClubList.length) && <LoadMore onClick={loadMore}>Load more;</LoadMore>}
+                
       </Container>
     </Layout>
   )

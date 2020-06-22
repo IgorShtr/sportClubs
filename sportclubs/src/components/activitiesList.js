@@ -8,58 +8,46 @@ export const ActivitiesSection = props =>{
     
   const [activeState, setActiveState] = useState([])
   const dispatch = useDispatch();
-  const activitiesFromStor = useSelector(state =>state.sportClubs.availableSports);
-  const activitiesExactcityFromStor = useSelector(state =>state.sportClubs.availableSportsExactcity);
+  const availableActivities = useSelector(state =>state.sportClubs.availableSports);
+  const activeActivity = useSelector(state =>state.sportClubs.activeActivity);
 
  
 
- 
-    const initialState = activitiesFromStor.map(city=>{
-      return {city,
-              isActive: false}
-    })
-   
-  
-    useLayoutEffect(()=>{    
-      setActiveState(initialState)
-    },[activitiesFromStor])
  
 const setActive = (e) =>{
   const chosenActivity =e.target.getAttribute('data-name');
-  const newState = activeState.map(({city})=>{
-    if (city===chosenActivity){
-      return { city,
-      isActive: true}
-    }
-    else{
-      return {
-        city,
-        isActive:false
-      }
-    }
-  })
-  setActiveState(newState);
   dispatch(setActiveActivity(chosenActivity))
 }
 
 
-  const activities = activeState.map(({city, isActive})=>{
-    
+  const activities = availableActivities.map((activity)=>{
+    const isActive = (activity === activeActivity) ? true : false;
     return ( 
-      <ActivityItem key={uuidv4()} data-name = {city} onClick={setActive} isActive={isActive}>
-        {city}
+      <ActivityItem key={uuidv4()} data-name = {activity} onClick={setActive} isActive={isActive}>
+        {activity}
       </ActivityItem>
     )    
   })
   
 
   return (
-    <ActivityList>
-    {activities}
-    </ActivityList>
+    <Activities>
+        <ActivityList>
+            {activities}
+        </ActivityList>
+          <ResetBtn onClick={()=>dispatch(setActiveActivity(""))}>
+            Reset activities
+          </ResetBtn>
+    </Activities>
+   
+  
+    
   )
 }
 
+const Activities = styled.div`
+
+`
 const ActivityItem = styled.div`
 font-size: 14px;
 font-family: 'Source Sans Pro', sans-serif;
@@ -73,10 +61,22 @@ background-color:${props=>props.isActive ? "lightgrey" : "none"};
 :hover{
   background-color: lightgrey;
 }
-`
+`;
+
 const ActivityList = styled.div`
 border-top: 1px solid grey;
 padding-top: 15px;
 display: flex;
 flex-wrap: wrap;
+`;
+
+const ResetBtn = styled.div`
+margin: 20px auto;
+width: fit-content;
+box-sizing: border-box;
+border-radius: 5px;
+border: solid 0.3px black;
+padding: 7px;
+cursor: pointer;
+color:darkgrey;
 `

@@ -49,13 +49,7 @@ export function sportClubsReduser(store = initialState, { type, payload }) {
      case ACTIVE_CITY: {       
       return {
         ...store,
-        activeCity:  store.availableClubs.filter(it=>{    
-          const {title} =  it.city;   
-         if (title === payload){
-           return it
-         }
-        }
-        )
+        activeCity:  payload   
       }
     }
     case ACTIVE_ACTIVITY: {       

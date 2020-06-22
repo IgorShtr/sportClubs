@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+import {mediaMobile} from '../common/mediabrakepoints/mediaBreakPoints'
+import {ActionState}  from '../common/stateContext'
 // import {connect} from 'react-redux';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import {  faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +21,7 @@ export const Header =props => {
  })
   return (<>
   <HederContainer>
+  <ActionState>
     <Logo>
       <div>Logo</div>
       <div>Instasport</div>  
@@ -28,8 +31,10 @@ export const Header =props => {
         <NavyItemsList>{HeaderNavy}</NavyItemsList>
         <div>Enter</div>
       </Navy>  
-
-   
+      <NavyMobile>
+      <div>Enter</div>
+      </NavyMobile>
+      </ActionState>    
   </HederContainer>  
 
     </>
@@ -37,6 +42,10 @@ export const Header =props => {
 };
 
 const HederContainer = styled.div`
+position: fixed;
+top:0;
+left:0;
+width: 100vw;
 min-height: 50px;
 display: flex;
 align-items: center;
@@ -45,6 +54,9 @@ border-color: #e7e7e7;
 margin-bottom: 20px;
 color: lightgrey;
 font-size: 18px;
+${mediaMobile(  `
+  justify-content: space-between;
+`)}
 `
 const Navy = styled.div`
 display: flex;
@@ -56,13 +68,14 @@ color: #777;
 div:last-child{
   margin-right:20px;
 }
-
+${mediaMobile(  `
+  display: none;
+`)}
 `
 const HeaderNavyItem = styled(NavLink)`
 margin-left: 20px;
 display: flex;
 color: #777;
-// line-height: 20px;
 text-decoration:none;
 `
 
@@ -73,5 +86,18 @@ display: flex;
  const NavyItemsList = styled.div`
  display: flex;
  `
+
+  
+ const NavyMobile = styled.div`{
+   display:none;
+   ${mediaMobile(  `
+  display: block;
+  div{
+    margin-right:20px;
+    font-size: 12px;
+    color: #777;
+  }
+`)}
+ }`
 
  

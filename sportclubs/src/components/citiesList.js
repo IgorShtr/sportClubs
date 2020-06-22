@@ -5,44 +5,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import {setActiveCity} from '../store/reduser';
 
 export const CitiesSection = props =>{
-    
+
   const [activeState, setActiveState] = useState([])
   const dispatch = useDispatch();
-  const citiesFromStor = useSelector(state =>state.sportClubs.availableCities);
+  const availableCities = useSelector(state =>state.sportClubs.availableCities);
+ const chosenCity = useSelector(state =>state.sportClubs.activeCity);
+//  console.log(availableCities, activeState)
  
-
- 
-    const initialState = citiesFromStor.map(city=>{
-      return {city,
-              isActive: false}
-    })
+    // const initialState = citiesFromStor.map(city=>{
+    //   return {city,
+    //           isActive: false}
+    // })
    
   
     useLayoutEffect(()=>{    
-      setActiveState(initialState)
-    },[citiesFromStor])
+      setActiveState(availableCities)
+    },[availableCities])
  
 const setActive = (e) =>{
   const chosenCity =e.target.getAttribute('data-name');
-  const newState = activeState.map(({city})=>{
-    if (city===chosenCity){
-      return { city,
-      isActive: true}
-    }
-    else{
-      return {
-        city,
-        isActive:false
-      }
-    }
-  })
-  setActiveState(newState);
+  // const newState = activeState.map(({city})=>{
+  //   if (city===chosenCity){
+  //     return { city,
+  //     isActive: true}
+  //   }
+  //   else{
+  //     return {
+  //       city,
+  //       isActive:false
+  //     }
+  //   }
+  // })
+  // setActiveState(newState);
   dispatch(setActiveCity(chosenCity))
 }
 
 
-  const cities = activeState.map(({city, isActive})=>{
-    
+  const cities = availableCities.map((city)=>{
+    // console.log(availableCities, activeState)
+    const isActive = (city ===chosenCity) ? true : false;
     return ( 
       <CityItem key={uuidv4()} data-name = {city} onClick={setActive} isActive={isActive}>
         {city}
