@@ -1,39 +1,42 @@
-import React, { useState, useLayoutEffect} from 'react';
+import React, { useState, useLayoutEffect, useEffect} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import {  useDispatch, useSelector } from 'react-redux';
+import {setAvailableClubs} from '../store/reduser'
 import {Layout} from '../common/layout';
-import {ClubsListFiltered} from '../components/clubsListFiltred'
+import {ClubsListFiltered} from '../components/clubsListFiltred';
+import {CitiesSection} from '../components/citiesList';
+import {ActivitiesSection} from '../components/activitiesList'
+
 
 export const MainView = props =>{
-const [clubsList, setClubsList] = useState([]);
-const [filtredClubList, setFiltredClubList] = useState([])
-const [shownItems, setShownItems] = useState(73)
+const [filtredClubList, setFiltredClubList] = useState([]);
+const [shownItems, setShownItems] = useState(6);
+const [activeCity, setActiveCity] = useState("")
+const dispatch = useDispatch();  
+const clubs = useSelector(state =>state.sportClubs.availableClubs);
 
 useLayoutEffect(()=>{
-  axios
-  .get('https://instasport.co/dashboard/api/v1/clubs/')
-   .then(result => {     
-   console.log(result.data)
-    setClubsList(result.data);  
-    setFiltredClubList(result.data); 
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    dispatch(setAvailableClubs()); 
 }, [])
+
+
+console.log(shownItems , filtredClubList.length, (shownItems != filtredClubList.length), filtredClubList)
 
 const loadMore =()=>{
   (filtredClubList.length > (shownItems + 6)) ? 
   setShownItems(shownItems + 6) : 
   setShownItems (filtredClubList.length)
 }
-console.log(shownItems , filtredClubList.length, (shownItems != filtredClubList.length))
+
+
   return (
     <Layout>
       <Container>
-        <div>HI THERE</div>
-        <ClubsListFiltered clubsList={filtredClubList.slice(0, shownItems)}/>
-       { (shownItems != filtredClubList.length) && <LoadMore onClick={loadMore}>&#187;</LoadMore>}
+        <CitiesSection setActiveCity={setActiveCity}/>
+        <ActivitiesSection/>
+        <ClubsListFiltered clubsList={[]}/>
+       { (shownItems !== filtredClubList.length) && <LoadMore onClick={loadMore}>Load more;</LoadMore>}
       </Container>
     </Layout>
   )

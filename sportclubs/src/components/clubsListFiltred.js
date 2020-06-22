@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
-// import {connect} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import {  faSearch } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 
 export const ClubsListFiltered = props =>{
-const {clubsList}=props;
-const clubDitails =clubsList.map(({link, logo, title_short})=>{
-  console.log(link)
+
+const clubs = useSelector(state =>state.sportClubs.availableClubs);
+const activeCity = useSelector(state =>state.sportClubs.activeCity);
+
+
+
+const clubDitails =(activeCity.length ? activeCity : clubs).map(({link, logo, title_short})=>{
+  
 return (
   <ClubItemData>
       <ClubLogoLink key={uuidv4()} to={link}>  
