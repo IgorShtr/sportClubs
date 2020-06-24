@@ -8,10 +8,10 @@ import {MainView} from './views/mainView'
 function App() {
   return (
     <Provider store={store}>
-      <HashRouter basename="/sportclubs">
+      <HashRouter basename="/sportClubs">
     <Switch>
-      <Route exect path='/sportclubs' component={MainView} />         
-      <Redirect to="/sportclubs" />
+      <Route exect path='/sportClubs' component={MainView} />         
+      <Redirect to="/sportClubs" />
     </Switch>
   </HashRouter> 
     </Provider>

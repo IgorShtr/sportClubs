@@ -5,8 +5,7 @@ import { StateContext } from '../common/stateContext';
 
 export const NavyBtn = () => {
 
-  const { isActive, toggleActive } = useContext(StateContext);
-  console.log(isActive)
+  const { isActive, toggleActive } = useContext(StateContext); 
   return (
 
     <HeaderMenu
