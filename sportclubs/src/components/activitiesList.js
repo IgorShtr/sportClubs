@@ -1,47 +1,44 @@
-import React, { useState, useEffect, useLayoutEffect} from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
-import {setActiveActivity} from '../store/reduser';
+import { setActiveActivity } from '../store/reduser';
 
-export const ActivitiesSection = props =>{
-    
-  const [activeState, setActiveState] = useState([])
+export const ActivitiesSection = props => {
+
   const dispatch = useDispatch();
-  const availableActivities = useSelector(state =>state.sportClubs.availableSports);
-  const activeActivity = useSelector(state =>state.sportClubs.activeActivity);
+  const availableActivitiesAll = useSelector(state => state.sportClubs.availableSports);
+  const availableActivitiesExectCity = useSelector(state => state.sportClubs.availableSportsExactcity);
+  const activeActivity = useSelector(state => state.sportClubs.activeActivity);
 
- 
-
- 
-const setActive = (e) =>{
-  const chosenActivity =e.target.getAttribute('data-name');
-  dispatch(setActiveActivity(chosenActivity))
-}
+  const setActive = (e) => {
+    const chosenActivity = e.target.getAttribute('data-name');
+    dispatch(setActiveActivity(chosenActivity))
+  }
 
 
-  const activities = availableActivities.map((activity)=>{
+  const activities = (availableActivitiesExectCity.length ? availableActivitiesExectCity : availableActivitiesAll).map((activity) => {
     const isActive = (activity === activeActivity) ? true : false;
-    return ( 
-      <ActivityItem key={uuidv4()} data-name = {activity} onClick={setActive} isActive={isActive}>
+    return (
+      <ActivityItem key={uuidv4()} data-name={activity} onClick={setActive} isActive={isActive}>
         {activity}
       </ActivityItem>
-    )    
+    )
   })
-  
+
 
   return (
     <Activities>
-        <ActivityList>
-            {activities}
-        </ActivityList>
-          <ResetBtn onClick={()=>dispatch(setActiveActivity(""))}>
-            Reset activities
+      <ActivityList>
+        {activities}
+      </ActivityList>
+      <ResetBtn onClick={() => dispatch(setActiveActivity(""))}>
+        Reset activities
           </ResetBtn>
     </Activities>
-   
-  
-    
+
+
+
   )
 }
 
@@ -57,7 +54,7 @@ cursor: pointer;
 box-sizing: border-box;
 border-radius: 5px;
 border: solid 0.3px grey;
-background-color:${props=>props.isActive ? "lightgrey" : "none"};
+background-color:${props => props.isActive ? "lightgrey" : "none"};
 :hover{
   background-color: lightgrey;
 }

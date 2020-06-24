@@ -16,14 +16,13 @@ import {
 
 
 const initialState = {
-  availableClubs:[],  
+  availableClubs: [],
   availableCities: [],
   activeCity: [],
   availableSports: [],
-  availableSportsExactcity:[], 
+  availableSportsExactcity: [],
   activeActivity: "",
-  paginationPage: 1,
-  
+
 
 };
 
@@ -38,48 +37,48 @@ export function sportClubsReduser(store = initialState, { type, payload }) {
     case AVAILABLE_CITIES: {
       return {
         ...store,
-        availableCities:  Array.from(new Set(
-          store.availableClubs.map(({city})=>{
-          const {title} = city;
-          return  title
-        })
-          ))
+        availableCities: Array.from(new Set(
+          store.availableClubs.map(({ city }) => {
+            const { title } = city;
+            return title
+          })
+        ))
       }
     }
-     case ACTIVE_CITY: {       
+    case ACTIVE_CITY: {
       return {
         ...store,
-        activeCity:  payload   
+        activeCity: payload
       }
     }
-    case ACTIVE_ACTIVITY: {       
+    case ACTIVE_ACTIVITY: {
       return {
         ...store,
-        activeActivity:  payload
+        activeActivity: payload
       }
     }
     case AVAILABLE_SPORTS: {
-      const activitiesArrey =store.availableClubs.map(({activity})=>{
-        const slugs = activity.map(({slug})=> {return slug})
-       return slugs
-       });
-       const activities = Array.from(new Set (activitiesArrey.reduce((a,b)=>a.concat(b), [])))
+      const activitiesArrey = store.availableClubs.map(({ activity }) => {
+        const slugs = activity.map(({ slug }) => { return slug })
+        return slugs
+      });
+      const activities = Array.from(new Set(activitiesArrey.reduce((a, b) => a.concat(b), [])))
       return {
         ...store,
         availableSports: activities
-    
+
       }
     }
     case AVAILABLE_SPORTS_EXACTCITY: {
-      const activitiesArrey =store.activeCity.map(({activity})=>{
-        const slugs = activity.map(({slug})=> {return slug})
-       return slugs
-       });
-       const activities = Array.from(new Set (activitiesArrey.reduce((a,b)=>a.concat(b), [])))
+      const activitiesArrey = payload.map(({ activity }) => {
+        const slugs = activity.map(({ slug }) => { return slug })
+        return slugs
+      });
+      const activities = Array.from(new Set(activitiesArrey.reduce((a, b) => a.concat(b), [])))
       return {
         ...store,
         availableSportsExactcity: activities
-    
+
       }
     }
     default:
@@ -91,7 +90,7 @@ export function sportClubsReduser(store = initialState, { type, payload }) {
 export const setAvailableClubs = () => dispatch => {
   axios
     .get(`https://instasport.co/dashboard/api/v1/clubs/`)
-    .then(result => {  
+    .then(result => {
       dispatch(availableClubs(result.data));
       dispatch(availableCities());
       dispatch(availableSports());
@@ -111,6 +110,6 @@ export const setActiveActivity = (activity) => dispatch => {
   dispatch(activeActivity(activity));
 }
 
-export const setAvailableSportsExactcity  = () => dispatch => {
-  dispatch(availableSportsExactcity());
+export const setAvailableSportsExactcity = (activeCityClubsList) => dispatch => {
+  dispatch(availableSportsExactcity(activeCityClubsList));
 }

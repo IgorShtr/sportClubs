@@ -24,4 +24,5 @@ export function mediaMobile(content) {
   `;
 }
 
+
 export const mediaQueryMobile = 767;

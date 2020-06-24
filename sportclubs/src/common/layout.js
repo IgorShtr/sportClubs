@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Header} from '../components/header';
-// import {Footer} from './footer'
+import { Header } from '../components/header';
+import { Footer } from '../components/footer'
 
-export const Layout = props =>{
-  return(
+export const Layout = props => {
+  return (
     <MainLayout>
-      <Header/>
+      <Header />
       <main className="content">{props.children}</main>
-      {/* <Footer/> */}
+      <Footer />
     </MainLayout>
   )
 }

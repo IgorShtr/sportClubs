@@ -10,10 +10,7 @@ export const ActionState = ({ children }) => {
 
   function toggleActive() {
     toggleIsActive(!isActive)
-    !isActive ? document.body.style.overflow = "hidden"
-      : document.body.style.overflow = "auto"
   }
-  console.log(isActive)
   return (
     <StateContext.Provider value={{ isActive, toggleActive }}>
       {children}

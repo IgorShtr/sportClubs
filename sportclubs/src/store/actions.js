@@ -12,6 +12,8 @@ export const availableCities = () => ({
 
 });
 
+
+
 export const ACTIVE_CITY = "ACTIVE_CITY"
 
 export const activeCity = (payload) => ({
@@ -38,7 +40,8 @@ export const availableSports = () => ({
 
 export const AVAILABLE_SPORTS_EXACTCITY = "AVAILABLE_SPORTS_EXACTCITY"
 
-export const availableSportsExactcity = () => ({
+export const availableSportsExactcity = (payload) => ({
   type: AVAILABLE_SPORTS_EXACTCITY,
+  payload,
 
 });
