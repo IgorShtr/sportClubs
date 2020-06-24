@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8bc8af67699c522498405b590c3a2108",
+    "revision": "1c2a4b4fc995347e975082e0b65e221b",
     "url": "/sportClubs/index.html"
   },
   {
-    "revision": "0e93f6e6c8243711a736",
+    "revision": "9c25bc20c50152b50ca4",
     "url": "/sportClubs/static/css/main.ce30cc12.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sportClubs/static/js/2.bf751e84.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0e93f6e6c8243711a736",
-    "url": "/sportClubs/static/js/main.131ed2d8.chunk.js"
+    "revision": "9c25bc20c50152b50ca4",
+    "url": "/sportClubs/static/js/main.586728d3.chunk.js"
   },
   {
     "revision": "1a66e7d8bba0e116550d",
