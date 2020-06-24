@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { mediaMobile } from '../common/mediabrakepoints/mediaBreakPoints';
 import { StateContext } from '../common/stateContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,6 @@ export const NavyDrop = props => {
   const { headerNavy } = props;
   const { isActive, toggleActive } = useContext(StateContext);
 
-  console.log(isActive)
   return (
     isActive ? (
       <DropNavyMobile open={isActive ? true : false} className={isActive ? "active" : ""}>

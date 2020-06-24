@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,6 @@ export const ClubsListFiltered = props => {
     }
     )
     dispatch(setAvailableSportsExactcity(filteredBySity));
-    // console.log(filteredBySity);
     const filtered = activeActivity ? (filteredBySity.length ? filteredBySity : clubs).filter((club) => {
       const availableItemActivity = club.activity.map(({ slug }) => { return slug });
       const includingCheck = availableItemActivity.filter((activity) => { return (activity === activeActivity) });

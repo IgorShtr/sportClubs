@@ -9,7 +9,7 @@ export const Footer = () => {
   return (
     <FooterContent>
       <FontAwesomeIcon icon={faCheck} />
-      <div>        
+      <div>
         Instasport – спортхаб онлайн!
       </div>
     </FooterContent>

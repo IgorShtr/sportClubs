@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,23 +12,15 @@ import { NavyDrop } from '../components/navyDrop'
 import { ActionState } from '../common/stateContext'
 
 
-export const MainView = props => {
-  const [filtredClubList, setFiltredClubList] = useState([]);
-  const [shownItems, setShownItems] = useState(6);
-  const [activeCity, setActiveCity] = useState("")
-  const dispatch = useDispatch();
-  const clubs = useSelector(state => state.sportClubs.availableClubs);
+export const MainView = props => { 
+  const [activeCity, setActiveCity] = useState("");
+    const dispatch = useDispatch();
+
 
   useLayoutEffect(() => {
     dispatch(setAvailableClubs());
   }, [])
 
-
-  const loadMore = () => {
-    (filtredClubList.length > (shownItems + 6)) ?
-      setShownItems(shownItems + 6) :
-      setShownItems(filtredClubList.length)
-  }
 
 
   return (
