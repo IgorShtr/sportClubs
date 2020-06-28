@@ -7,39 +7,33 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const NavyDrop = props => {
   const { headerNavy } = props;
-  const { isActive, toggleActive } = useContext(StateContext);
-
+  const { isActive} = useContext(StateContext);  
   return (
-    isActive ? (
-      <DropNavyMobile open={isActive ? true : false} className={isActive ? "active" : ""}>
-        <DropNavyContent>
-          <NavyItems>{headerNavy}</NavyItems>
-          <SignIn>
-            <FontAwesomeIcon icon={faSignInAlt} />
-            <div> Enter</div>
-          </SignIn>
-        </DropNavyContent>
-      </DropNavyMobile>) :
-      null
+    <DropNavyMobile open={isActive ? true : false} className={isActive ? "active" : ""}>
+      <DropNavyContent>
+        <NavyItems>{headerNavy}</NavyItems>
+        <SignIn>
+          <FontAwesomeIcon icon={faSignInAlt} />
+          <div> Enter</div>
+        </SignIn>
+      </DropNavyContent>
+    </DropNavyMobile>
+
   )
 }
 
 const DropNavyMobile = styled.div`
-// width: 100vw;
 min-height: 200px;
 background-color: #f8f8f8;
 overflow-x: auto;
-top: 53px;
+top: ${props => props.open ? "53px" : "-200px"}; 
 left:0;
- position: fixed;
- transform: translateX(-100%);
-  transition: all 0.3s ease-in-out;
- ${props =>
-    props.open &&
-    css`
-  transform: translateX(0);
-  `}
-
+ position: absolute;
+ z-index:2; 
+ transition-property: top;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  z-index:1;
 `
 const DropNavyContent = styled.div`
  padding-top: 10px;

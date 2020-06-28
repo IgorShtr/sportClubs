@@ -5,7 +5,7 @@ import { StateContext } from '../common/stateContext';
 
 export const NavyBtn = () => {
 
-  const { isActive, toggleActive } = useContext(StateContext); 
+  const { isActive, toggleActive } = useContext(StateContext);
   return (
 
     <HeaderMenu
@@ -14,7 +14,7 @@ export const NavyBtn = () => {
         className={isActive ? "active" : ""}>
         <Bar />
         <Bar />
-      </OpenMenu>  
+      </OpenMenu>
     </HeaderMenu>
 
   )

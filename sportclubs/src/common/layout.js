@@ -7,7 +7,9 @@ import { Footer } from '../components/footer'
 export const Layout = props => {
   return (
     <MainLayout>
-      <Header />
+      <HeaderWraper>
+        <Header />
+      </HeaderWraper>
       <main className="content">{props.children}</main>
       <Footer />
     </MainLayout>
@@ -25,3 +27,8 @@ height: 100%;
   margin-top: 50px;
 }
 `;
+const HeaderWraper = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+`

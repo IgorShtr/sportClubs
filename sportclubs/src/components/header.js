@@ -23,21 +23,23 @@ export const Header = props => {
   return (<>
     <HederContainer>
       <ActionState>
-        <Logo>
-          <FontAwesomeIcon icon={faCheck} />
-          <div>Instasport</div>
-        </Logo>
+        <MainContetnt>
+          <Logo>
+            <FontAwesomeIcon icon={faCheck} />
+            <div>Instasport</div>
+          </Logo>
 
-        <Navy>
-          <NavyItemsList>{headerNavy}</NavyItemsList>
-          <SignIn>
-          <FontAwesomeIcon icon={faSignInAlt}/>
-            <div> Enter</div>
-          </SignIn>
-        </Navy>
-        <NavyMobile>
-          <NavyBtn />
-        </NavyMobile>
+          <Navy>
+            <NavyItemsList>{headerNavy}</NavyItemsList>
+            <SignIn>
+              <FontAwesomeIcon icon={faSignInAlt} />
+              <div> Enter</div>
+            </SignIn>
+          </Navy>
+          <NavyMobile>
+            <NavyBtn />
+          </NavyMobile>
+        </MainContetnt>
         <NavyDrop headerNavy={headerNavy} />
       </ActionState>
 
@@ -48,10 +50,12 @@ export const Header = props => {
 };
 
 const HederContainer = styled.div`
-position: fixed;
-top:0;
-left:0;
+position:absolute;
 width: 100vw;
+ `
+const MainContetnt = styled.div`
+position: relative;
+z-index:10;
 min-height: 50px;
 display: flex;
 align-items: center;
@@ -63,7 +67,7 @@ margin-bottom: 20px;
 color: lightgrey;
 font-size: 18px;
 ${mediaMobile(`
-  justify-content: space-between;
+  justify-content: space-between;  
 `)}
 `
 const Navy = styled.div`
