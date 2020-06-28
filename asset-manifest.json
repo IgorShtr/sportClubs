@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/sportClubs/static/css/main.ce30cc12.chunk.css",
-    "main.js": "/sportClubs/static/js/main.131ed2d8.chunk.js",
-    "main.js.map": "/sportClubs/static/js/main.131ed2d8.chunk.js.map",
+    "main.js": "/sportClubs/static/js/main.18e6960d.chunk.js",
+    "main.js.map": "/sportClubs/static/js/main.18e6960d.chunk.js.map",
     "runtime-main.js": "/sportClubs/static/js/runtime-main.1837e018.js",
     "runtime-main.js.map": "/sportClubs/static/js/runtime-main.1837e018.js.map",
     "static/js/2.bf751e84.chunk.js": "/sportClubs/static/js/2.bf751e84.chunk.js",
     "static/js/2.bf751e84.chunk.js.map": "/sportClubs/static/js/2.bf751e84.chunk.js.map",
     "index.html": "/sportClubs/index.html",
-    "precache-manifest.35b936231153dc98c16229ca11db42dd.js": "/sportClubs/precache-manifest.35b936231153dc98c16229ca11db42dd.js",
+    "precache-manifest.74cae86d2bd015b65a5736f43692a7a0.js": "/sportClubs/precache-manifest.74cae86d2bd015b65a5736f43692a7a0.js",
     "service-worker.js": "/sportClubs/service-worker.js",
     "static/css/main.ce30cc12.chunk.css.map": "/sportClubs/static/css/main.ce30cc12.chunk.css.map",
     "static/js/2.bf751e84.chunk.js.LICENSE.txt": "/sportClubs/static/js/2.bf751e84.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1837e018.js",
     "static/js/2.bf751e84.chunk.js",
     "static/css/main.ce30cc12.chunk.css",
-    "static/js/main.131ed2d8.chunk.js"
+    "static/js/main.18e6960d.chunk.js"
   ]
 }
